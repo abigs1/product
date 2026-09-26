@@ -9,6 +9,6 @@ import com.product.api.entity.Category;
 
 public interface RepoCategory extends JpaRepository<Category, Integer> {
 
-    @Query("SELECT c FROM Category c WHERE c.status = 1")
+    @Query("SELECT c FROM Category c")
     List<Category> getCategories();
 }
