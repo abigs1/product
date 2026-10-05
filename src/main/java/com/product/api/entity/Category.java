@@ -1,10 +1,13 @@
 package com.product.api.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 
 @Entity
@@ -14,18 +17,23 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "category_id")
+    @JsonProperty("category_id")
     private Integer categoryId;
 
-    @Column(name = "category", nullable = false, unique = true)
+    @Column(name = "category", nullable = false, unique = true, length = 50)
+    @JsonProperty("category")
     private String category;
 
-    @Column(name = "tag", nullable = false, unique = true)
+    @Column(name = "tag", nullable = false, unique = true, length = 10)
+    @JsonProperty("tag")
     private String tag;
 
     @Column(name = "parent_category_id")
+    @JsonProperty("parentCategoryId")
     private Integer parentCategoryId;
 
     @Column(name = "status", nullable = false)
+    @JsonProperty("status")
     private Integer status;
 
     public Category() {
@@ -46,6 +54,14 @@ public class Category {
         this.tag = tag;
         this.parentCategoryId = parentCategoryId;
         this.status = 1;
+    }
+
+    // Una categoría nueva siempre nace activa
+    @PrePersist
+    void prePersist() {
+        if (status == null) {
+            status = 1;
+        }
     }
 
     public Integer getCategoryId() { return categoryId; }
