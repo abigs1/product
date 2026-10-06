@@ -31,7 +31,7 @@ public class SvcCategoryImpl implements SvcCategory {
         } catch (DataAccessException e) {
             throw new ApiException(
                 HttpStatus.INTERNAL_SERVER_ERROR,
-                e.getMessage()
+                "Error al acceder a la base de datos."
             );
         }
     }
