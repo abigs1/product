@@ -147,6 +147,11 @@ public class SvcCategoryImpl implements SvcCategory {
                 }
                 ancestor = repoCategory.findById(ancestor).map(Category::getParentCategoryId).orElse(null);
             }
+        } catch (DataAccessException e) {
+            throw new ApiException(
+                HttpStatus.INTERNAL_SERVER_ERROR,
+                "Error al acceder a la base de datos."
+            );
         }
     }
 }
