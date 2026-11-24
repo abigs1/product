@@ -19,7 +19,6 @@ import com.product.api.dto.in.DtoProductIn;
 import com.product.api.dto.out.DtoProductListOut;
 import com.product.api.dto.out.DtoProductOut;
 import com.product.api.service.SvcProduct;
-import com.product.common.dto.ApiResponse;
 import com.product.exception.ApiException;
 
 import jakarta.validation.Valid;
@@ -42,22 +41,22 @@ public class CtrlProduct {
 	}
 
 	@PostMapping
-	public ResponseEntity<ApiResponse> createProduct(@Valid @RequestBody DtoProductIn in) {
+	public ResponseEntity<String> createProduct(@Valid @RequestBody DtoProductIn in) {
 		return svc.createProduct(in);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<ApiResponse> updateProduct(@PathVariable Integer id, @Valid @RequestBody DtoProductIn in) {
+	public ResponseEntity<String> updateProduct(@PathVariable Integer id, @Valid @RequestBody DtoProductIn in) {
 		return svc.updateProduct(id, in);
 	}
 
 	@PatchMapping("/{id}/enable")
-	public ResponseEntity<ApiResponse> enableProduct(@PathVariable Integer id) {
+	public ResponseEntity<String> enableProduct(@PathVariable Integer id) {
 		return svc.enableProduct(id);
 	}
 
 	@PatchMapping("/{id}/disable")
-	public ResponseEntity<ApiResponse> disableProduct(@PathVariable Integer id) {
+	public ResponseEntity<String> disableProduct(@PathVariable Integer id) {
 		return svc.disableProduct(id);
 	}
 }
