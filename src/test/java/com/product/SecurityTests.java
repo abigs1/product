@@ -28,8 +28,8 @@ class SecurityTests {
 	private static final String SECRET = "mi_clave_super_secreta_para_jwt_segura_2026_abcdef";
 
 	// Nombres de rol tal como vienen en el token (ajustar si la API Auth usa otros)
-	private static final String ADMIN = "Admin";
-	private static final String CUSTOMER = "Customer";
+	private static final String ADMIN = "Administrator";
+	private static final String CUSTOMER = "User";
 
 	@Autowired
 	MockMvc mvc;

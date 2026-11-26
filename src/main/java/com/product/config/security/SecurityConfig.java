@@ -30,14 +30,14 @@ public class SecurityConfig {
                 .requestMatchers("/error").permitAll()
 
                 // Customer y Admin: categorias activas
-                .requestMatchers(HttpMethod.GET, "/category/active").hasAnyAuthority("Admin", "Customer")
+                .requestMatchers(HttpMethod.GET, "/category/active").hasAnyAuthority("Administrator", "User")
 
                 // Customer y Admin: detalle de un producto y sus imagenes
-                .requestMatchers(HttpMethod.GET, "/product/{id}").hasAnyAuthority("Admin", "Customer")
-                .requestMatchers(HttpMethod.GET, "/product/{id}/image").hasAnyAuthority("Admin", "Customer")
+                .requestMatchers(HttpMethod.GET, "/product/{id}").hasAnyAuthority("Administrator", "User")
+                .requestMatchers(HttpMethod.GET, "/product/{id}/image").hasAnyAuthority("Administrator", "User")
 
                 // Todo lo demas: solo Admin
-                .anyRequest().hasAuthority("Admin")
+                .anyRequest().hasAuthority("Administrator")
                 )
         .cors(cors -> cors.configurationSource(corsConfig))
         .httpBasic(Customizer.withDefaults())
